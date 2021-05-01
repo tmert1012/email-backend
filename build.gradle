@@ -12,6 +12,7 @@ dependencies {
     compile 'io.javalin:javalin:3.13.6'
     compile "org.slf4j:slf4j-simple:1.7.30"
     compile "org.slf4j:slf4j-simple:1.8.0-beta4"
+    implementation 'com.google.code.gson:gson:2.8.6'
 
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
