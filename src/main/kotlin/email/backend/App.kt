@@ -5,7 +5,7 @@ import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.crud
 
 fun main(args: Array<String>) {
-    val app = Javalin.create().start(7000)
+    val app = Javalin.create { config -> config.enableCorsForAllOrigins() }.start(7000)
 
     app.get("/") { ctx -> ctx.result("email-backend is up") }
 
