@@ -2,6 +2,7 @@ package email.backend.controllers
 
 import com.google.gson.Gson
 import email.backend.dao.EmailDao
+import email.backend.validation.EmailValidation
 import io.javalin.apibuilder.CrudHandler
 import io.javalin.http.Context
 
@@ -11,16 +12,14 @@ object EmailController: CrudHandler {
     private val gson = Gson()
 
     override fun create(ctx: Context) {
-        val email = ctx.formParam<String>("email")
+        val email = ctx.formParam<String>("email").check({ EmailValidation.isValidEmail(it) }, "Invalid email format.")
+        val uuid = dao.save(email.get())
 
-        dao.save(email.get())
-
-        ctx.result("${email.get()} added!")
+        ctx.result(uuid)
     }
 
     override fun delete(ctx: Context, resourceId: String) {
         val emailId = ctx.pathParam("email-id")
-
         dao.delete(emailId)
 
         ctx.result("$emailId removed!")

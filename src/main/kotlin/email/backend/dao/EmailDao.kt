@@ -7,9 +7,10 @@ class EmailDao {
 
     val recordMap = HashMap<String, Record>() // uuid, record
 
-    fun save(email: String) {
+    fun save(email: String): String {
         val uuid = UUID.randomUUID().toString()
         recordMap[uuid] = Record(email, uuid)
+        return uuid
     }
 
     fun findById(uuid: String): Record? {

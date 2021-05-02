@@ -14,8 +14,14 @@ dependencies {
     compile "org.slf4j:slf4j-simple:1.8.0-beta4"
     implementation 'com.google.code.gson:gson:2.8.6'
 
-    testImplementation 'org.jetbrains.kotlin:kotlin-test'
-    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
+}
+
+test {
+    useJUnitPlatform()
 }
 
 mainClassName = 'email.backend.AppKt'
