@@ -6,10 +6,7 @@ import email.backend.validation.EmailValidation
 import io.javalin.apibuilder.CrudHandler
 import io.javalin.http.Context
 
-object EmailController: CrudHandler {
-
-    private val dao = EmailDao()
-    private val gson = Gson()
+class EmailController(private val dao: EmailDao, private val gson: Gson) : CrudHandler {
 
     override fun create(ctx: Context) {
         val email = ctx.formParam<String>("email").check({ EmailValidation.isValidEmail(it) }, "Invalid email format.")
